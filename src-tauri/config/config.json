@@ -1,0 +1,30 @@
+{
+    "BG": {
+        "verboseName": "BACKGROUND",
+        "desc": "lorem ipsum",
+        "params": [
+            {
+                "label": "1",
+                "type": "input-small"
+            }
+        ]
+    },
+
+    "CHAR": {
+        "verboseName": "CHARACTER",
+        "desc": "dolor et",
+        "params" : []
+    },
+
+    "CLOSE": {
+        "verboseName": "CLOSE SCENE",
+        "desc": "quod erat demonstratum",
+        "params" : []
+    },
+
+    "SETC": {
+        "verboseName": "SET CHARACTER",
+        "desc": "sets something idk",
+        "params" : []
+    }
+}
