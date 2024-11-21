@@ -1,7 +1,31 @@
+import InputSmall from "./moduleInputSmall.jsx"
+import InputMedium from "./moduleInputMedium.jsx"
+import InputLarge from "./moduleInputLarge.jsx"
+import InputXLarge from "./moduleInputXLarge.jsx"
+import TextArea from "./moduleTextArea.jsx"
 
 export default function ModuleCore(props) {
 
     let count = 0
+
+    function renderComponent(index , key , label , value) {
+        switch(key) {
+            case "InputSmall":
+                return <InputSmall index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
+            case "InputMedium":
+                return <InputMedium index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
+            case "InputLarge":
+                return <InputLarge index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
+            case "InputXLarge":
+                return <InputXLarge index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
+            case "TextArea":
+                return <TextArea index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
+            default:
+                return null
+        }
+    }
+
+    let testArr = [{"key" : "InputLarge" , "label" : "TEST" , "value" : ""} , {"key" : "InputSmall" , "label" : "TEST 2" , "value" : ""} , {"key" : "TextArea" , "label" : "TEST AREA" , "value" : ""}]
 
     return (
         <>
@@ -25,9 +49,14 @@ export default function ModuleCore(props) {
 
                 </div>
                 <div className="module-core-parameters">
-                    {props.modules.map(x => {
+                    {
+                        props.params.map(x => {
+                            return renderComponent(x["index"] , x["key"] , x["label"] , x["value"])
+                        })
+                    }
+{/*                     {props.modules.map(x => {
                         return x
-                    })}
+                    })} */}
                 </div>
                 <div className="module-core-delete">
                     <img id={props.index} height="50px" width="50px" src={props.coreHandles.trashIcon} style={{ userSelect: "none" }} onClick={props.coreHandles.deleteModule}></img>

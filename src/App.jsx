@@ -121,20 +121,20 @@ function App() {
 
   function moduleUp() {
     let targetIndex = parseInt(event.target.id)
-    let tempTrigger = moduleList.list.map(item => item.index).indexOf(targetIndex)
+    let tempTrigger = moduleData.list.map(item => item.index).indexOf(targetIndex)
     if (tempTrigger == 0) {
       return
     }
     
-    let triggerStore = moduleList.list[tempTrigger]
-    let targetStore = moduleList.list[tempTrigger-1]
+    let triggerStore = moduleData.list[tempTrigger]
+    let targetStore = moduleData.list[tempTrigger-1]
 
-    let bufferlist = moduleList.list.map(x => x)
+    let bufferlist = moduleData.list.map(x => x)
 
     bufferlist[tempTrigger] = targetStore
     bufferlist[tempTrigger-1] = triggerStore
 
-    setModuleList((prevObj) => {
+    setModuleData((prevObj) => {
       return (
         {
           ...prevObj,
@@ -146,20 +146,20 @@ function App() {
 
   function moduleDown() {
     let targetIndex = parseInt(event.target.id)
-    let tempTrigger = moduleList.list.map(item => item.index).indexOf(targetIndex)
-    if (moduleList.list.length <= tempTrigger + 1) {
+    let tempTrigger = moduleData.list.map(item => item.index).indexOf(targetIndex)
+    if (moduleData.list.length <= tempTrigger + 1) {
       return
     }
     
-    let triggerStore = moduleList.list[tempTrigger]
-    let targetStore = moduleList.list[tempTrigger+1]
+    let triggerStore = moduleData.list[tempTrigger]
+    let targetStore = moduleData.list[tempTrigger+1]
 
-    let bufferlist = moduleList.list.map(x => x)
+    let bufferlist = moduleData.list.map(x => x)
 
     bufferlist[tempTrigger] = targetStore
     bufferlist[tempTrigger+1] = triggerStore
 
-    setModuleList((prevObj) => {
+    setModuleData((prevObj) => {
       return (
         {
           ...prevObj,
@@ -170,21 +170,55 @@ function App() {
 
   }
 
+  function handleChange() {
+    let value = event.target.value
+    let index = event.target.id
+    let moduleIndex = parseInt(index.split(":")[0])
+    let paramIndex = parseInt(index.split(":")[1])
+    let moduleArrIndex = moduleData.list.map(item => item.index).indexOf(moduleIndex)
+
+    let updList = moduleData.list.map(x => x)
+    updList[moduleArrIndex].inputs[paramIndex]["value"] = value
+
+    setModuleData((prevObj => {
+      return({
+        ...prevObj,
+        list : updList
+      }
+      )
+    }))
+  }
+
   let coreHandles = {
     "deleteModule" : deleteModule,
     "moduleUp" : moduleUp,
     "moduleDown" : moduleDown,
     "trashIcon" : trashIcon,
+    "handleChange" : handleChange
   }
 
-  let [moduleList, setModuleList] = useState(
+
+  function renderCoreComponent(index , label , params) {
+    return <ModuleCore index={index} label={label} params={params} coreHandles={coreHandles}/>  
+  }
+
+
+  let [moduleData , setModuleData] = useState(
     {
       counter : 3 ,
       list : [
-        {index : 0 , module : <ModuleCore index={0} label={"BG"} coreHandles={coreHandles} modules={[<InputSmall label={"ID"} value={""}/> , <InputMedium label={"MEDIUM"} value={""}/> , <InputXLarge label={"X LARGE"} value={""}/> , <InputMedium label={"MEDIUM"} value={""}/> , <InputLarge label={"LARGE"} value={""}/> , <TextArea label={"TEXT AREA"}/>]} entries={[]}/>},
-        {index : 1 , module : <ModuleCore index={1} label={"CHAR"} coreHandles={coreHandles} modules={[]} entries={[]}/>},
-        {index : 2 , module : <ModuleCore index={2} label={"SETC"} coreHandles={coreHandles} modules={[]} entries={[]}/>},
-        {index : 3 , module : <ModuleCore index={3} label={"CLOSE"} coreHandles={coreHandles} modules={[<TextArea label={"TEXT AREA 2"}/>]} entries={[]}/>},
+        {index : 0 , label : "BG" , inputs : [
+          {"index" : "0:0" , "key" : "InputSmall" , "label" : "INDEX" , "value" : ""},
+          {"index" : "0:1" , "key" : "InputLarge" , "label" : "BG IMAGE" , "value" : ""},
+        ]},
+        {index : 1 , label : "TEXT" , inputs : [
+          {"index" : "1:0" , "key" : "InputXLarge" , "label" : "SPEAKER" , "value" : ""},
+          {"index" : "1:1" , "key" : "TextArea" , "label" : "TEXT" , "value" : ""},
+        ]},
+        {index : 2 , label : "TEXT" , inputs : [
+          {"index" : "2:0" , "key" : "InputXLarge" , "label" : "SPEAKER" , "value" : ""},
+          {"index" : "2:1" , "key" : "TextArea" , "label" : "TEXT" , "value" : ""},
+        ]},
       ]
     }
   )
@@ -213,8 +247,8 @@ function App() {
       </div>
       <div id="main-container" className="">
         <div id="entries-wrapper" className="">
-          {moduleList.list.map((x) => {
-            return x.module
+          {moduleData.list.map((x) => {
+            return renderCoreComponent(x["index"] , x["label"] , x["inputs"])
           })}
         </div>
         <div id="sidebar-container" className="">

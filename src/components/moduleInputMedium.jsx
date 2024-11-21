@@ -9,7 +9,7 @@ export default function InputMedium(props) {
 
     return(
         <>
-            <input id={props.id} placeholder={props.label ? props.label : "N/A"} style={style} onChange={props.updateInput} value={props.value ? props.value : ""}></input>
+            <input id={props.index} placeholder={props.label ? props.label : "N/A"} style={style} onChange={props.handleChange} value={props.value ? props.value : ""}></input>
         </>
     )
 }

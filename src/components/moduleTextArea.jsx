@@ -11,7 +11,7 @@ export default function TextArea(props) {
 
     return(
         <>
-            <textarea id={props.id} placeholder={props.label ? props.label : "N/A"} style={style} onChange={props.updateInput}></textarea>
+            <textarea id={props.index} placeholder={props.label ? props.label : "N/A"} style={style} value={props.value ? props.value : ""} onChange={props.handleChange}></textarea>
         </>
     )
 }
