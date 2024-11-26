@@ -9,11 +9,6 @@ import SideButton from "./components/sideButton";
 import "./App.css";
 import { useState, useEffect } from "react";
 import ModuleCore from "./components/moduleCore.jsx"
-import InputSmall from "./components/moduleInputSmall.jsx"
-import InputMedium from "./components/moduleInputMedium.jsx"
-import InputLarge from "./components/moduleInputLarge.jsx"
-import InputXLarge from "./components/moduleInputXLarge.jsx"
-import TextArea from "./components/moduleTextArea.jsx"
 
 function App() {
 
@@ -94,7 +89,37 @@ function App() {
   }
 
   function createModule() {
-    console.log("run create module")
+    let mainIndex = moduleData.counter
+    let updIndex = mainIndex + 1
+    let confKey = event.target.id
+
+    let newInputs = []
+
+    configObj[confKey].params.forEach(x => {
+      let newParam = {
+        "index" : `${mainIndex}:${x.index}`,
+        "key" : x.key,
+        "label" : x.label,
+        "value" : "",
+        "dType" : x.dType
+      }
+
+      newInputs.push(newParam)
+    })
+    
+    let newModule = {index : mainIndex , label : confKey , inputs : newInputs}
+
+    setModuleData((prevObj) => {
+      return(
+        {
+          "counter" : updIndex,
+          "list" : [
+            ...prevObj.list,
+            newModule
+          ]
+        }
+      )
+    })
   }
 
   function descPopUp() {
@@ -110,13 +135,24 @@ function App() {
   }
 
   function copyToClip() {
-    console.log("copy to clip ran")
-
-    console.log(<InputSmall label={"test"}/>)
   }
 
   function deleteModule() {
-    console.log(event.target)
+    let indexID = parseInt(event.target.id)
+    let arrIndex = parseInt(moduleData.list.map(item => item.index).indexOf(indexID))
+
+    let bufferlist = moduleData.list.map(x => x);
+
+    bufferlist.splice(arrIndex , 1)
+
+    setModuleData((prevObj) => {
+      return (
+        {
+          ...prevObj,
+          list : bufferlist
+        }
+      )
+    })
   }
 
   function moduleUp() {
@@ -205,21 +241,8 @@ function App() {
 
   let [moduleData , setModuleData] = useState(
     {
-      counter : 3 ,
-      list : [
-        {index : 0 , label : "BG" , inputs : [
-          {"index" : "0:0" , "key" : "InputSmall" , "label" : "INDEX" , "value" : ""},
-          {"index" : "0:1" , "key" : "InputLarge" , "label" : "BG IMAGE" , "value" : ""},
-        ]},
-        {index : 1 , label : "TEXT" , inputs : [
-          {"index" : "1:0" , "key" : "InputXLarge" , "label" : "SPEAKER" , "value" : ""},
-          {"index" : "1:1" , "key" : "TextArea" , "label" : "TEXT" , "value" : ""},
-        ]},
-        {index : 2 , label : "TEXT" , inputs : [
-          {"index" : "2:0" , "key" : "InputXLarge" , "label" : "SPEAKER" , "value" : ""},
-          {"index" : "2:1" , "key" : "TextArea" , "label" : "TEXT" , "value" : ""},
-        ]},
-      ]
+      counter : 0 ,
+      list : []
     }
   )
 

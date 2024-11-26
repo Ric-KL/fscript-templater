@@ -4,8 +4,16 @@
         "desc": "lorem ipsum",
         "params": [
             {
-                "label": "1",
-                "type": "input-small"
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dType" : "int"
+            },
+            {
+                "index" : "1",
+                "key" : "InputXLarge",
+                "label" : "BACKGROUND IMAGE",
+                "dtype" : "str"
             }
         ]
     },
@@ -13,18 +21,147 @@
     "CHAR": {
         "verboseName": "CHARACTER",
         "desc": "dolor et",
-        "params" : []
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+            {
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "IMAGE ID",
+                "dtype" : "int"
+            },
+            {
+                "index" : "2",
+                "key" : "InputXLarge",
+                "label" : "CHARACTER IMAGE",
+                "dtype" : "str"
+            },
+            {
+                "index" : "3",
+                "key" : "InputXLarge",
+                "label" : "ANIMATION NAME",
+                "dtype" : "str"
+            },
+            {
+                "index" : "4",
+                "key" : "InputMedium",
+                "label" : "X POSITION",
+                "dtype" : "int"
+            },
+            {
+                "index" : "5",
+                "key" : "InputMedium",
+                "label" : "Y POSITION",
+                "dtype" : "int"
+            }
+        ]
     },
 
     "CLOSE": {
         "verboseName": "CLOSE SCENE",
         "desc": "quod erat demonstratum",
-        "params" : []
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            }
+        ]
     },
 
     "SETC": {
         "verboseName": "SET CHARACTER",
         "desc": "sets something idk",
-        "params" : []
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+            {
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "IMAGE ID",
+                "dtype" : "int"
+            },
+            {
+                "index" : "2",
+                "key" : "InputMedium",
+                "label" : "X POSITION",
+                "dtype" : "int"
+            },
+            {
+                "index" : "3",
+                "key" : "InputMedium",
+                "label" : "Y POSITION",
+                "dtype" : "int"
+            },
+            {
+                "index" : "4",
+                "key" : "InputSmall",
+                "label" : "ROTATION",
+                "dtype" : "int"
+            },
+            {
+                "index" : "5",
+                "key" : "InputSmall",
+                "label" : "SCALE X",
+                "dtype" : "int"
+            },
+            {
+                "index" : "6",
+                "key" : "InputSmall",
+                "label" : "SCALE Y",
+                "dtype" : "int"
+            },
+            {
+                "index" : "7",
+                "key" : "InputSmall",
+                "label" : "Z INDEX",
+                "dtype" : "int"
+            },
+            {
+                "index" : "8",
+                "key" : "InputSmall",
+                "label" : "MODULATE RED",
+                "dtype" : "int"
+            },
+            {
+                "index" : "9",
+                "key" : "InputSmall",
+                "label" : "MODULATE GREEN",
+                "dtype" : "int"
+            },
+            {
+                "index" : "10",
+                "key" : "InputSmall",
+                "label" : "MODULATE BLUE",
+                "dtype" : "int"
+            },
+            {
+                "index" : "11",
+                "key" : "InputSmall",
+                "label" : "MODULATE ALPHA",
+                "dtype" : "int"
+            },
+            {
+                "index" : "12",
+                "key" : "InputSmall",
+                "label" : "ANIMATION TIME",
+                "dtype" : "int"
+            },
+            {
+                "index" : "13",
+                "key" : "InputSmall",
+                "label" : "EASE-CURVE",
+                "dtype" : "flt"
+            }
+        ]
     }
 }
