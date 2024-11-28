@@ -135,7 +135,20 @@ function App() {
   }
 
   function copyToClip() {
+    readModules()
   }
+
+
+  function resetEnv() {
+    setModuleData(
+      {
+        counter : 0 ,
+        list : []
+      }
+    )
+    localStorage.removeItem("data")
+  }
+
 
   function deleteModule() {
     let indexID = parseInt(event.target.id)
@@ -233,18 +246,32 @@ function App() {
     "handleChange" : handleChange
   }
 
-
+  
   function renderCoreComponent(index , label , params) {
     return <ModuleCore index={index} label={label} params={params} coreHandles={coreHandles}/>  
   }
 
 
-  let [moduleData , setModuleData] = useState(
-    {
-      counter : 0 ,
-      list : []
-    }
-  )
+  let [moduleData , setModuleData] = useState(localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : {"counter" : 0 , "list" : []})
+
+  useEffect(() => {
+    localStorage.setItem("data" , JSON.stringify(moduleData))
+  },[moduleData])
+
+
+  function readModules() {
+    let fscriptStr = ""
+    let dataList = moduleData.list
+    dataList.forEach(x => {
+      let pushStr = x.label
+      x.inputs.forEach(y => {
+        pushStr = pushStr + ` ${y.value}`
+      })
+      fscriptStr = fscriptStr + `${pushStr}\n`
+    })
+    console.log(fscriptStr)
+  }
+
 
   return (
     <div id="wrapper" className="">
@@ -259,6 +286,9 @@ function App() {
       <div id="navbar-container" className="">
         <div id="title-label" className="">
           <h1><span className="title-font"><em>fScript</em></span> Templater</h1>
+        </div>
+        <div id="reset-button" className="button-clickable" onClick={resetEnv}> {/* copy to clip button */}
+          <h3>Reset Environment</h3>
         </div>
         <div id="copy-button" className="button-clickable" onClick={copyToClip}> {/* copy to clip button */}
           <h3>Copy to Clipboard</h3>
