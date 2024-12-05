@@ -1,7 +1,7 @@
 {
     "BG": {
         "verboseName": "BACKGROUND",
-        "desc": "lorem ipsum",
+        "desc": "Sets the background for Visual Novel scenes.",
         "params": [
             {
                 "index" : "0",
@@ -17,10 +17,53 @@
             }
         ]
     },
+	
+	"BG_F": {
+        "verboseName": "FADE BACKGROUND",
+        "desc": "Fades or colors a Background over time.",
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+            {
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "MODULATE RED",
+                "dtype" : "int"
+            },
+            {
+                "index" : "2",
+                "key" : "InputSmall",
+                "label" : "MODULATE GREEN",
+                "dtype" : "int"
+            },
+            {
+                "index" : "3",
+                "key" : "InputSmall",
+                "label" : "MODULATE BLUE",
+                "dtype" : "int"
+            },
+            {
+                "index" : "4",
+                "key" : "InputSmall",
+                "label" : "MODULATE ALPHA",
+                "dtype" : "int"
+            },
+            {
+                "index" : "12",
+                "key" : "InputMedium",
+                "label" : "FADE TIME",
+                "dtype" : "int"
+            }
+        ]
+    },
 
     "CHAR": {
-        "verboseName": "CHARACTER",
-        "desc": "dolor et",
+        "verboseName": "ADD CHARACTER SPRITE",
+        "desc": "Adds an animated Character Sprite on the Scene.",
         "params" : [
             {
                 "index" : "0",
@@ -42,7 +85,7 @@
             },
             {
                 "index" : "3",
-                "key" : "InputXLarge",
+                "key" : "InputMedium",
                 "label" : "ANIMATION NAME",
                 "dtype" : "str"
             },
@@ -61,22 +104,9 @@
         ]
     },
 
-    "CLOSE": {
-        "verboseName": "CLOSE SCENE",
-        "desc": "quod erat demonstratum",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            }
-        ]
-    },
-
     "SETC": {
-        "verboseName": "SET CHARACTER",
-        "desc": "sets something idk",
+        "verboseName": "POSITION CHARACTER SPRITE",
+        "desc": "Moves, Rotates, Scales, & Colors a Character Sprite over time with easing.",
         "params" : [
             {
                 "index" : "0",
@@ -161,6 +191,206 @@
                 "key" : "InputSmall",
                 "label" : "EASE-CURVE",
                 "dtype" : "flt"
+            }
+        ]
+    },
+	
+	"ANIM": {
+        "verboseName": "ANIMATE SPRITE",
+        "desc": "Change the Animation on a Sprite.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dType" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "IMAGE ID",
+                "dtype" : "int"
+            },
+            {
+                "index" : "2",
+                "key" : "InputMedium",
+                "label" : "ANIMATION NAME",
+                "dtype" : "str"
+            }
+        ]
+    },
+	
+	"RC_C": {
+        "verboseName": "REMOVE CHARACTER SPRITE",
+        "desc": "Removes a Character Sprite.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dType" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "IMAGE ID",
+                "dtype" : "int"
+            }
+        ]
+    },
+	"RC_S": {
+        "verboseName": "REMOVE SPRITE",
+        "desc": "Removes any Sprite.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dType" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "IMAGE ID",
+                "dtype" : "int"
+            }
+        ]
+    },
+	"RC_P": {
+        "verboseName": "REMOVE PROP SPRITE",
+        "desc": "Removes a Prop Sprite.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dType" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "IMAGE ID",
+                "dtype" : "int"
+            }
+        ]
+    },
+    "CLOSE": {
+        "verboseName": "CLOSE SCENE",
+        "desc": "Exits out of an Overlayed Scene.(Example: An Npc's dialogue, or a Pause Menu.)",
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            }
+        ]
+    },
+	"GOTO": {
+        "verboseName": "GO TO NEW SCENE",
+        "desc": "Closes the Current Scene & Loads a New Scene.",
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "SCENE TYPE (0 = ARPG, 1 = VN, 2 = MENU)",
+                "dtype" : "int"
+            },
+			{
+                "index" : "2",
+                "key" : "InputMedium",
+                "label" : "Scene ID",
+                "dtype" : "int"
+            }
+        ]
+    },
+	"SCN": {
+        "verboseName": "LOAD SCENE OBJECT",
+        "desc": "SYSTEM COMMAND - Loads a Scene Object.",
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputMedium",
+                "label" : "SCENE NAME",
+                "dtype" : "str"
+            }
+        ]
+    },
+	"NPC": {
+        "verboseName": "LOAD NPC OBJECT",
+        "desc": "SYSTEM COMMAND - Loads an NPC Object into a Level at a given Entry Point.",
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputMedium",
+                "label" : "OBJECT NAME",
+                "dtype" : "str"
+            },
+			{
+                "index" : "2",
+                "key" : "InputMedium",
+                "label" : "ENTRY POINT ID",
+                "dtype" : "int"
+            }
+        ]
+    },
+	"ITM": {
+        "verboseName": "INVENTORY ITEM DATABASE ENTRY",
+        "desc": "SYSTEM COMMAND - An Inventory Item's Data Parameters.",
+        "params" : [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dtype" : "int"
+            },
+			{
+                "index" : "1",
+                "key" : "InputMedium",
+                "label" : "ITEM NAME",
+                "dtype" : "str"
+            },
+			{
+                "index" : "2",
+                "key" : "InputXLarge",
+                "label" : "ICON FILE PATH",
+                "dtype" : "str"
+            },
+			{
+                "index" : "3",
+                "key" : "InputMedium",
+                "label" : "MIN VALUE",
+                "dtype" : "int"
+            },
+			{
+                "index" : "4",
+                "key" : "InputMedium",
+                "label" : "MAX VALUE",
+                "dtype" : "int"
+            },
+			{
+                "index" : "5",
+                "key" : "InputSmall",
+                "label" : "SHOW EVEN IF EMPTY",
+                "dtype" : "bool"
             }
         ]
     }

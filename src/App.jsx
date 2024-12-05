@@ -265,11 +265,11 @@ function App() {
     dataList.forEach(x => {
       let pushStr = x.label
       x.inputs.forEach(y => {
-        pushStr = pushStr + ` ${y.value}`
+        pushStr = pushStr + `\t${y.value}`
       })
       fscriptStr = fscriptStr + `${pushStr}\n`
     })
-    console.log(fscriptStr)
+    navigator.clipboard.writeText(fscriptStr)
   }
 
 
@@ -288,7 +288,7 @@ function App() {
           <h1><span className="title-font"><em>fScript</em></span> Templater</h1>
         </div>
         <div id="reset-button" className="button-clickable" onClick={resetEnv}> {/* copy to clip button */}
-          <h3>Reset Environment</h3>
+          <h3>Reset Env.</h3>
         </div>
         <div id="copy-button" className="button-clickable" onClick={copyToClip}> {/* copy to clip button */}
           <h3>Copy to Clipboard</h3>
