@@ -1,4 +1,28 @@
 {
+	"TEXT": {
+		"verboseName": "TEXT",
+        "desc": "A Dialogue Box.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "INDEX",
+                "dType" : "int"
+            },
+            {
+                "index" : "1",
+                "key" : "InputMedium",
+                "label" : "SPEAKER",
+                "dtype" : "str"
+            },
+            {
+                "index" : "2",
+                "key" : "InputXLarge",
+                "label" : "DIALOGUE",
+                "dtype" : "str"
+            }
+        ]
+	},
     "BG": {
         "verboseName": "BACKGROUND",
         "desc": "Sets the background for Visual Novel scenes.",
