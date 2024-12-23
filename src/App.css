@@ -157,6 +157,16 @@ h4 {
   border-radius: 2px;
 }
 
+#saves-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 40px;
+  padding: 0px;
+  border-radius: 2px;
+}
+
 #config-button {
   display: flex;
   justify-content: center;
@@ -179,7 +189,7 @@ h4 {
 
 #right-spacer {
   height: 40px;
-  width: 370px;
+  width: 500px;
 }
 
 /*Sidebar Button Component*/

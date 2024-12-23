@@ -12,14 +12,14 @@ import ModuleCore from "./components/moduleCore.jsx"
 
 function App() {
 
-  const textarealist = document.querySelectorAll("textarea")
+/*   const textarealist = document.querySelectorAll("textarea")
   textarealist.forEach(x => {
     x.addEventListener("keyup" , e => {
       x.style.height = "95px"
       let scHeight = e.target.scrollHeight
       x.style.height = `${scHeight}px`
     })
-  })
+  }) */
 
   async function returnObj() {
     let path = await resolveResource("config/config.json")
@@ -88,6 +88,28 @@ function App() {
     }
   }
 
+  const readSaveFiles = async () => {
+    try {
+      const selectedPath = await open({
+        multiple: false,
+        title: "Select Save",
+        defaultPath: await resolveResource("saves/")
+      });
+
+      let strData = await readTextFile(selectedPath);
+      
+      let modulesRaw = strData.split("\r\n")
+      console.log(modulesRaw)
+
+      if (!selectedPath) { return }
+      else { return }
+
+    } catch (error) {
+      alert("Invalid Data File")
+      console.log(error)
+    }
+  }
+
   function createModule() {
     let mainIndex = moduleData.counter
     let updIndex = mainIndex + 1
@@ -95,12 +117,22 @@ function App() {
 
     let newInputs = []
 
+    let indexParam = {
+      "index" : `${mainIndex}:0`,
+      "key" : "InputSmallIndex",
+      "label" : "INDEX",
+      "value" : "0",
+      "dType" : "int"
+    }
+
+    newInputs.push(indexParam)
+
     configObj[confKey].params.forEach(x => {
       let newParam = {
-        "index" : `${mainIndex}:${x.index}`,
+        "index" : `${mainIndex}:${parseInt(x.index) + 1}`,
         "key" : x.key,
         "label" : x.label,
-        "value" : "",
+        "value" : x.defValue ? x.defValue : "",
         "dType" : x.dType
       }
 
@@ -136,6 +168,7 @@ function App() {
 
   function copyToClip() {
     readModules()
+    console.log(moduleData)
   }
 
 
@@ -191,6 +224,7 @@ function App() {
         }
       )
     })
+
   }
 
   function moduleDown() {
@@ -256,6 +290,11 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("data" , JSON.stringify(moduleData))
+    const textarealist = document.querySelectorAll("textarea")
+    textarealist.forEach(x => {
+      x.style.height = "95px"
+      x.style.height = `${x.scrollHeight}px`
+    })
   },[moduleData])
 
 
@@ -291,10 +330,16 @@ function App() {
           <h3>Reset Env.</h3>
         </div>
         <div id="copy-button" className="button-clickable" onClick={copyToClip}> {/* copy to clip button */}
-          <h3>Copy to Clipboard</h3>
+          <h3>Copy to Clip.</h3>
         </div>
         <div id="config-button" className="button-clickable" onClick={readFileContents}> {/* open config folder button */}
           <h3>Open Config</h3>
+        </div>
+        <div id="saves-button" className="button-clickable" onClick={readSaveFiles}> {/* open saves folder to load */}
+          <h3>Load</h3>
+        </div>
+        <div id="saves-button" className="button-clickable" onClick={readSaveFiles}> {/* writes save to folder */}
+          <h3>Save</h3>
         </div>
         <div id="right-spacer" className=""> {/* right side spacer */}</div>
       </div>

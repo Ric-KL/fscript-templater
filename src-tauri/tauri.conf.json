@@ -38,7 +38,7 @@
         "removeFile": true,
         "renameFile": true,
         "exists": true,
-        "scope": ["$RESOURCE/config/*"]
+        "scope": ["$RESOURCE/config/*" , "$RESOURCE/saves/*"]
       },
       "path": {
         "all": true
@@ -57,7 +57,7 @@
       "csp": null
     },
     "bundle": {
-      "resources" : ["config/*"],
+      "resources" : ["config/*" , "saves/*"],
       "active": true,
       "targets": "all",
       "identifier": "com.f-script-templater.app",

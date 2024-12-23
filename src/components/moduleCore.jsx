@@ -3,6 +3,7 @@ import InputMedium from "./moduleInputMedium.jsx"
 import InputLarge from "./moduleInputLarge.jsx"
 import InputXLarge from "./moduleInputXLarge.jsx"
 import TextArea from "./moduleTextArea.jsx"
+import InputSmallIndex from "./moduleInputSmallIndex.jsx"
 
 export default function ModuleCore(props) {
 
@@ -20,6 +21,8 @@ export default function ModuleCore(props) {
                 return <InputXLarge index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
             case "TextArea":
                 return <TextArea index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
+            case "InputSmallIndex":
+                return <InputSmallIndex index={index} label = {label} value = {value} handleChange={props.coreHandles.handleChange}/>
             default:
                 return null
         }

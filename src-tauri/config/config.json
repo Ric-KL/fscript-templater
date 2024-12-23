@@ -13,11 +13,12 @@
                 "index" : "1",
                 "key" : "InputMedium",
                 "label" : "SPEAKER",
-                "dtype" : "str"
+                "dtype" : "str" ,
+                "defValue" : "Author"
             },
             {
                 "index" : "2",
-                "key" : "InputXLarge",
+                "key" : "TextArea",
                 "label" : "DIALOGUE",
                 "dtype" : "str"
             }
@@ -77,7 +78,7 @@
                 "dtype" : "int"
             },
             {
-                "index" : "12",
+                "index" : "5",
                 "key" : "InputMedium",
                 "label" : "FADE TIME",
                 "dtype" : "int"
