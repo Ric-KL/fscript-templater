@@ -339,6 +339,8 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #b6b6b6;
+  border-radius: 10px;
 }
 
 .module-core-delete:hover {

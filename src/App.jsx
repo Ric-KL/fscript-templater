@@ -4,7 +4,7 @@ import { Store } from "@tauri-apps/plugin-store"
 import { readTextFile } from "@tauri-apps/api/fs";
 import { resolveResource } from "@tauri-apps/api/path";
 import infoIcon from "./assets/info-offwhite.png"
-import trashIcon from "./assets/Trash.png"
+import trashIcon from "./assets/TrashAlt.png"
 import SideButton from "./components/sideButton";
 import "./App.css";
 import { useState, useEffect } from "react";
@@ -119,7 +119,7 @@ function App() {
 
     let indexParam = {
       "index" : `${mainIndex}:0`,
-      "key" : "InputSmallIndex",
+      "key" : "InputSmall",
       "label" : "INDEX",
       "value" : "0",
       "dType" : "int"
@@ -127,9 +127,11 @@ function App() {
 
     newInputs.push(indexParam)
 
+    //${parseInt(x.index) + 1}
+
     configObj[confKey].params.forEach(x => {
       let newParam = {
-        "index" : `${mainIndex}:${parseInt(x.index) + 1}`,
+        "index" : `${mainIndex}:${newInputs.length}`,
         "key" : x.key,
         "label" : x.label,
         "value" : x.defValue ? x.defValue : "",

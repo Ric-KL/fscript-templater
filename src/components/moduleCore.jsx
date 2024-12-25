@@ -28,11 +28,28 @@ export default function ModuleCore(props) {
         }
     }
 
-    let testArr = [{"key" : "InputLarge" , "label" : "TEST" , "value" : ""} , {"key" : "InputSmall" , "label" : "TEST 2" , "value" : ""} , {"key" : "TextArea" , "label" : "TEST AREA" , "value" : ""}]
+    let highlightColor = "#494949"
+    let colorMode = ""
+
+    if (parseInt(props.params[0].value) == 0) {
+        highlightColor = "#494949"
+    }
+    else if (parseInt(props.params[0].value) == 1) {
+        highlightColor = "RGB(225 , 255, 225)"
+        colorMode = "difference"
+    }
+    else if (parseInt(props.params[0].value) == 2) {
+        highlightColor = "RGB(105 , 255, 255)"
+        colorMode = "difference"
+    }
+
+    let style = {
+        backgroundColor : highlightColor
+    }
 
     return (
         <>
-            <div className="module-core-container">
+            <div className="module-core-container" style={style}>
                 <div className="module-core-mover-container">
                     <div className="module-core-mover">
                         <div id={props.index} className="module-core-mover-button" onClick={props.coreHandles.moduleUp}>
@@ -46,9 +63,9 @@ export default function ModuleCore(props) {
                     </div>
                 </div>
                 <div className="module-core-label">
-                    <h1>{`${props.label}`}</h1>
+                    <h1 style={{mixBlendMode : colorMode}}>{`${props.label}`}</h1>
                 </div>
-                <div className="module-core-separator">
+                <div style={{mixBlendMode : colorMode}} className="module-core-separator">
 
                 </div>
                 <div className="module-core-parameters">
@@ -57,9 +74,6 @@ export default function ModuleCore(props) {
                             return renderComponent(x["index"] , x["key"] , x["label"] , x["value"])
                         })
                     }
-{/*                     {props.modules.map(x => {
-                        return x
-                    })} */}
                 </div>
                 <div className="module-core-delete">
                     <img id={props.index} height="50px" width="50px" src={props.coreHandles.trashIcon} style={{ userSelect: "none" }} onClick={props.coreHandles.deleteModule}></img>
