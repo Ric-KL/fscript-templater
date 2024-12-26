@@ -12,14 +12,14 @@ import ModuleCore from "./components/moduleCore.jsx"
 
 function App() {
 
-/*   const textarealist = document.querySelectorAll("textarea")
-  textarealist.forEach(x => {
-    x.addEventListener("keyup" , e => {
-      x.style.height = "95px"
-      let scHeight = e.target.scrollHeight
-      x.style.height = `${scHeight}px`
-    })
-  }) */
+  /*   const textarealist = document.querySelectorAll("textarea")
+    textarealist.forEach(x => {
+      x.addEventListener("keyup" , e => {
+        x.style.height = "95px"
+        let scHeight = e.target.scrollHeight
+        x.style.height = `${scHeight}px`
+      })
+    }) */
 
   async function returnObj() {
     let path = await resolveResource("config/config.json")
@@ -97,7 +97,7 @@ function App() {
       });
 
       let strData = await readTextFile(selectedPath);
-      
+
       let modulesRaw = strData.split("\r\n")
       console.log(modulesRaw)
 
@@ -118,11 +118,11 @@ function App() {
     let newInputs = []
 
     let indexParam = {
-      "index" : `${mainIndex}:0`,
-      "key" : "InputSmall",
-      "label" : "INDEX",
-      "value" : "0",
-      "dType" : "int"
+      "index": `${mainIndex}:0`,
+      "key": "InputSmall",
+      "label": "INDEX",
+      "value": "0",
+      "dType": "int"
     }
 
     newInputs.push(indexParam)
@@ -131,23 +131,23 @@ function App() {
 
     configObj[confKey].params.forEach(x => {
       let newParam = {
-        "index" : `${mainIndex}:${newInputs.length}`,
-        "key" : x.key,
-        "label" : x.label,
-        "value" : x.defValue ? x.defValue : "",
-        "dType" : x.dType
+        "index": `${mainIndex}:${newInputs.length}`,
+        "key": x.key,
+        "label": x.label,
+        "value": x.defValue ? x.defValue : "",
+        "dType": x.dType
       }
 
       newInputs.push(newParam)
     })
-    
-    let newModule = {index : mainIndex , label : confKey , inputs : newInputs}
+
+    let newModule = { index: mainIndex, label: confKey, inputs: newInputs }
 
     setModuleData((prevObj) => {
-      return(
+      return (
         {
-          "counter" : updIndex,
-          "list" : [
+          "counter": updIndex,
+          "list": [
             ...prevObj.list,
             newModule
           ]
@@ -177,8 +177,8 @@ function App() {
   function resetEnv() {
     setModuleData(
       {
-        counter : 0 ,
-        list : []
+        counter: 0,
+        list: []
       }
     )
     localStorage.removeItem("data")
@@ -191,13 +191,13 @@ function App() {
 
     let bufferlist = moduleData.list.map(x => x);
 
-    bufferlist.splice(arrIndex , 1)
+    bufferlist.splice(arrIndex, 1)
 
     setModuleData((prevObj) => {
       return (
         {
           ...prevObj,
-          list : bufferlist
+          list: bufferlist
         }
       )
     })
@@ -209,20 +209,20 @@ function App() {
     if (tempTrigger == 0) {
       return
     }
-    
+
     let triggerStore = moduleData.list[tempTrigger]
-    let targetStore = moduleData.list[tempTrigger-1]
+    let targetStore = moduleData.list[tempTrigger - 1]
 
     let bufferlist = moduleData.list.map(x => x)
 
     bufferlist[tempTrigger] = targetStore
-    bufferlist[tempTrigger-1] = triggerStore
+    bufferlist[tempTrigger - 1] = triggerStore
 
     setModuleData((prevObj) => {
       return (
         {
           ...prevObj,
-          list : bufferlist
+          list: bufferlist
         }
       )
     })
@@ -235,20 +235,20 @@ function App() {
     if (moduleData.list.length <= tempTrigger + 1) {
       return
     }
-    
+
     let triggerStore = moduleData.list[tempTrigger]
-    let targetStore = moduleData.list[tempTrigger+1]
+    let targetStore = moduleData.list[tempTrigger + 1]
 
     let bufferlist = moduleData.list.map(x => x)
 
     bufferlist[tempTrigger] = targetStore
-    bufferlist[tempTrigger+1] = triggerStore
+    bufferlist[tempTrigger + 1] = triggerStore
 
     setModuleData((prevObj) => {
       return (
         {
           ...prevObj,
-          list : bufferlist
+          list: bufferlist
         }
       )
     })
@@ -266,38 +266,38 @@ function App() {
     updList[moduleArrIndex].inputs[paramIndex]["value"] = value
 
     setModuleData((prevObj => {
-      return({
+      return ({
         ...prevObj,
-        list : updList
+        list: updList
       }
       )
     }))
   }
 
   let coreHandles = {
-    "deleteModule" : deleteModule,
-    "moduleUp" : moduleUp,
-    "moduleDown" : moduleDown,
-    "trashIcon" : trashIcon,
-    "handleChange" : handleChange
-  }
-
-  
-  function renderCoreComponent(index , label , params) {
-    return <ModuleCore index={index} label={label} params={params} coreHandles={coreHandles}/>  
+    "deleteModule": deleteModule,
+    "moduleUp": moduleUp,
+    "moduleDown": moduleDown,
+    "trashIcon": trashIcon,
+    "handleChange": handleChange
   }
 
 
-  let [moduleData , setModuleData] = useState(localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : {"counter" : 0 , "list" : []})
+  function renderCoreComponent(index, label, params) {
+    return <ModuleCore index={index} label={label} params={params} coreHandles={coreHandles} />
+  }
+
+
+  let [moduleData, setModuleData] = useState(localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : { "counter": 0, "list": [] })
 
   useEffect(() => {
-    localStorage.setItem("data" , JSON.stringify(moduleData))
+    localStorage.setItem("data", JSON.stringify(moduleData))
     const textarealist = document.querySelectorAll("textarea")
     textarealist.forEach(x => {
       x.style.height = "95px"
       x.style.height = `${x.scrollHeight}px`
     })
-  },[moduleData])
+  }, [moduleData])
 
 
   function readModules() {
@@ -348,18 +348,20 @@ function App() {
       <div id="main-container" className="">
         <div id="entries-wrapper" className="">
           {moduleData.list.map((x) => {
-            return renderCoreComponent(x["index"] , x["label"] , x["inputs"])
+            return renderCoreComponent(x["index"], x["label"], x["inputs"])
           })}
         </div>
         <div id="sidebar-container" className="">
           <div id="sidebar-header" className="">
             <h2>Select Modules</h2>
           </div>
-          {!configObj ? "" : Object.keys(configObj).map((x) => {
-            return (
-              <SideButton key={x} id={x} name={x} createModule={createModule} descPopUp={descPopUp} infoIcon={infoIcon} />
-            )
-          })}
+          <div id="side-buttons-container" className="">
+            {!configObj ? "" : Object.keys(configObj).map((x) => {
+              return (
+                <SideButton key={x} id={x} name={x} createModule={createModule} descPopUp={descPopUp} infoIcon={infoIcon} />
+              )
+            })}
+          </div>
         </div>
       </div>
     </div>

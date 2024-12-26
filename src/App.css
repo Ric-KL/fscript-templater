@@ -108,6 +108,18 @@ h4 {
   gap: 15px;
 }
 
+#side-buttons-container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  gap: 15px;
+  overflow-y: scroll;
+}
+
+#side-buttons-container::-webkit-scrollbar{
+  display: none;
+}
+
 #entries-wrapper {
   width: 100%;
   height: auto;

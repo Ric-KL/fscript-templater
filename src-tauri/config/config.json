@@ -1,421 +1,370 @@
 {
+	"#": {
+		"verboseName": "Comment",
+        "desc": "Doesn't get read by program.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputXLarge",
+                "label" : "COMMENT",
+                "dtype" : "str",
+				"defValue" : "Lorem ipsum."
+            }
+        ]
+	},
+	
 	"TEXT": {
 		"verboseName": "TEXT",
         "desc": "A Dialogue Box.",
         "params": [
             {
                 "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dType" : "int"
+                "key" : "InputMedium",
+                "label" : "SPEAKER",
+                "dtype" : "str"
             },
             {
                 "index" : "1",
-                "key" : "InputMedium",
-                "label" : "SPEAKER",
-                "dtype" : "str" ,
-                "defValue" : "Author"
-            },
-            {
-                "index" : "2",
                 "key" : "TextArea",
                 "label" : "DIALOGUE",
+                "dtype" : "str"
+            },
+			{
+                "index" : "2",
+                "key" : "InputXLarge",
+                "label" : "CHOICES",
                 "dtype" : "str"
             }
         ]
 	},
-    "BG": {
-        "verboseName": "BACKGROUND",
-        "desc": "Sets the background for Visual Novel scenes.",
+	
+    "WAIT": {
+        "verboseName": "WAIT",
+        "desc": "Wait time in frames.",
         "params": [
             {
                 "index" : "0",
                 "key" : "InputSmall",
-                "label" : "INDEX",
-                "dType" : "int"
-            },
-            {
-                "index" : "1",
-                "key" : "InputXLarge",
-                "label" : "BACKGROUND IMAGE",
-                "dtype" : "str"
+                "label" : "FRAMES",
+                "dtype" : "int"
             }
         ]
     },
 	
-	"BG_F": {
-        "verboseName": "FADE BACKGROUND",
-        "desc": "Fades or colors a Background over time.",
-        "params" : [
+	"VAR ": {
+		"verboseName": "VARIABLE",
+        "desc": "Update a game flag with a new value or an operation.",
+        "params": [
             {
                 "index" : "0",
                 "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
+                "label" : "VAR_A",
+                "dtype" : "int",
+				"defValue" : "1"
             },
             {
                 "index" : "1",
                 "key" : "InputSmall",
-                "label" : "MODULATE RED",
-                "dtype" : "int"
+                "label" : "OPERATION",
+                "dtype" : "str",
+				"defValue" : "="
             },
-            {
+			{
                 "index" : "2",
                 "key" : "InputSmall",
-                "label" : "MODULATE GREEN",
-                "dtype" : "int"
+                "label" : "VAR_B",
+                "dtype" : "int",
+				"defValue" : "0"
             },
-            {
+			{
                 "index" : "3",
                 "key" : "InputSmall",
-                "label" : "MODULATE BLUE",
-                "dtype" : "int"
-            },
-            {
-                "index" : "4",
-                "key" : "InputSmall",
-                "label" : "MODULATE ALPHA",
-                "dtype" : "int"
-            },
-            {
-                "index" : "5",
-                "key" : "InputMedium",
-                "label" : "FADE TIME",
-                "dtype" : "int"
+                "label" : "OFFSET",
+                "dtype" : "int",
+				"defValue" : "1"
             }
         ]
-    },
-
-    "CHAR": {
-        "verboseName": "ADD CHARACTER SPRITE",
-        "desc": "Adds an animated Character Sprite on the Scene.",
-        "params" : [
+	},
+	
+	"IF  ": {
+		"verboseName": "IF",
+        "desc": "If the condition is met, the branch_index is increased by 1.",
+        "params": [
             {
                 "index" : "0",
                 "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
+                "label" : "VAR_A",
+                "dtype" : "int",
+				"defValue" : "1"
             },
             {
                 "index" : "1",
                 "key" : "InputSmall",
-                "label" : "IMAGE ID",
-                "dtype" : "int"
+                "label" : "OPERATION",
+                "dtype" : "str",
+				"defValue" : "=="
+            },
+			{
+                "index" : "2",
+                "key" : "InputSmall",
+                "label" : "VAR_B",
+                "dtype" : "int",
+				"defValue" : "0"
+            },
+			{
+                "index" : "3",
+                "key" : "InputSmall",
+                "label" : "OFFSET",
+                "dtype" : "int",
+				"defValue" : "1"
+            }
+        ]
+	},
+	
+	"ENDIF": {
+		"verboseName": "END IF",
+        "desc": "Closes an IF statement & returns the branch_index back to its previous value.",
+        "params": []
+	},
+	
+	"IMG ": {
+		"verboseName": "IMAGE",
+        "desc": "Displays an new Image.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "IMG ID",
+                "dtype" : "int",
+				"defValue" : "0"
             },
             {
-                "index" : "2",
+                "index" : "1",
                 "key" : "InputXLarge",
-                "label" : "CHARACTER IMAGE",
-                "dtype" : "str"
+                "label" : "IMG PATH",
+                "dtype" : "str",
+				"defValue" : "/img/blob"
             },
-            {
-                "index" : "3",
-                "key" : "InputMedium",
-                "label" : "ANIMATION NAME",
-                "dtype" : "str"
-            },
-            {
-                "index" : "4",
-                "key" : "InputMedium",
-                "label" : "X POSITION",
-                "dtype" : "int"
-            },
-            {
-                "index" : "5",
-                "key" : "InputMedium",
-                "label" : "Y POSITION",
-                "dtype" : "int"
-            }
-        ]
-    },
-
-    "SETC": {
-        "verboseName": "POSITION CHARACTER SPRITE",
-        "desc": "Moves, Rotates, Scales, & Colors a Character Sprite over time with easing.",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            },
-            {
-                "index" : "1",
-                "key" : "InputSmall",
-                "label" : "IMAGE ID",
-                "dtype" : "int"
-            },
-            {
+			{
                 "index" : "2",
-                "key" : "InputMedium",
-                "label" : "X POSITION",
-                "dtype" : "int"
+                "key" : "InputSmall",
+                "label" : "X",
+                "dtype" : "int",
+				"defValue" : "0"
             },
-            {
+			{
                 "index" : "3",
-                "key" : "InputMedium",
-                "label" : "Y POSITION",
-                "dtype" : "int"
-            },
-            {
-                "index" : "4",
                 "key" : "InputSmall",
-                "label" : "ROTATION",
-                "dtype" : "int"
-            },
-            {
-                "index" : "5",
-                "key" : "InputSmall",
-                "label" : "SCALE X",
-                "dtype" : "int"
-            },
-            {
-                "index" : "6",
-                "key" : "InputSmall",
-                "label" : "SCALE Y",
-                "dtype" : "int"
-            },
-            {
-                "index" : "7",
-                "key" : "InputSmall",
-                "label" : "Z INDEX",
-                "dtype" : "int"
-            },
-            {
-                "index" : "8",
-                "key" : "InputSmall",
-                "label" : "MODULATE RED",
-                "dtype" : "int"
-            },
-            {
-                "index" : "9",
-                "key" : "InputSmall",
-                "label" : "MODULATE GREEN",
-                "dtype" : "int"
-            },
-            {
-                "index" : "10",
-                "key" : "InputSmall",
-                "label" : "MODULATE BLUE",
-                "dtype" : "int"
-            },
-            {
-                "index" : "11",
-                "key" : "InputSmall",
-                "label" : "MODULATE ALPHA",
-                "dtype" : "int"
-            },
-            {
-                "index" : "12",
-                "key" : "InputSmall",
-                "label" : "ANIMATION TIME",
-                "dtype" : "int"
-            },
-            {
-                "index" : "13",
-                "key" : "InputSmall",
-                "label" : "EASE-CURVE",
-                "dtype" : "flt"
+                "label" : "Y",
+                "dtype" : "int",
+				"defValue" : "0"
             }
         ]
-    },
+	},
 	
 	"ANIM": {
-        "verboseName": "ANIMATE SPRITE",
-        "desc": "Change the Animation on a Sprite.",
+		"verboseName": "ANIMATE",
+        "desc": "Changes the Animation of an Image.",
         "params": [
             {
                 "index" : "0",
                 "key" : "InputSmall",
-                "label" : "INDEX",
-                "dType" : "int"
+                "label" : "IMG ID",
+                "dtype" : "int",
+				"defValue" : "0"
             },
-			{
+            {
                 "index" : "1",
-                "key" : "InputSmall",
-                "label" : "IMAGE ID",
-                "dtype" : "int"
-            },
-            {
-                "index" : "2",
-                "key" : "InputMedium",
-                "label" : "ANIMATION NAME",
-                "dtype" : "str"
-            }
-        ]
-    },
-	
-	"RC_C": {
-        "verboseName": "REMOVE CHARACTER SPRITE",
-        "desc": "Removes a Character Sprite.",
-        "params": [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dType" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputSmall",
-                "label" : "IMAGE ID",
-                "dtype" : "int"
-            }
-        ]
-    },
-	"RC_S": {
-        "verboseName": "REMOVE SPRITE",
-        "desc": "Removes any Sprite.",
-        "params": [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dType" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputSmall",
-                "label" : "IMAGE ID",
-                "dtype" : "int"
-            }
-        ]
-    },
-	"RC_P": {
-        "verboseName": "REMOVE PROP SPRITE",
-        "desc": "Removes a Prop Sprite.",
-        "params": [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dType" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputSmall",
-                "label" : "IMAGE ID",
-                "dtype" : "int"
-            }
-        ]
-    },
-    "CLOSE": {
-        "verboseName": "CLOSE SCENE",
-        "desc": "Exits out of an Overlayed Scene.(Example: An Npc's dialogue, or a Pause Menu.)",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            }
-        ]
-    },
-	"GOTO": {
-        "verboseName": "GO TO NEW SCENE",
-        "desc": "Closes the Current Scene & Loads a New Scene.",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputSmall",
-                "label" : "SCENE TYPE (0 = ARPG, 1 = VN, 2 = MENU)",
-                "dtype" : "int"
-            },
-			{
-                "index" : "2",
-                "key" : "InputMedium",
-                "label" : "Scene ID",
-                "dtype" : "int"
-            }
-        ]
-    },
-	"SCN": {
-        "verboseName": "LOAD SCENE OBJECT",
-        "desc": "SYSTEM COMMAND - Loads a Scene Object.",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputMedium",
-                "label" : "SCENE NAME",
-                "dtype" : "str"
-            }
-        ]
-    },
-	"NPC": {
-        "verboseName": "LOAD NPC OBJECT",
-        "desc": "SYSTEM COMMAND - Loads an NPC Object into a Level at a given Entry Point.",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputMedium",
-                "label" : "OBJECT NAME",
-                "dtype" : "str"
-            },
-			{
-                "index" : "2",
-                "key" : "InputMedium",
-                "label" : "ENTRY POINT ID",
-                "dtype" : "int"
-            }
-        ]
-    },
-	"ITM": {
-        "verboseName": "INVENTORY ITEM DATABASE ENTRY",
-        "desc": "SYSTEM COMMAND - An Inventory Item's Data Parameters.",
-        "params" : [
-            {
-                "index" : "0",
-                "key" : "InputSmall",
-                "label" : "INDEX",
-                "dtype" : "int"
-            },
-			{
-                "index" : "1",
-                "key" : "InputMedium",
-                "label" : "ITEM NAME",
-                "dtype" : "str"
-            },
-			{
-                "index" : "2",
                 "key" : "InputXLarge",
-                "label" : "ICON FILE PATH",
-                "dtype" : "str"
+                "label" : "ANIM NAME",
+                "dtype" : "str",
+				"defValue" : "dancing"
+            }
+        ]
+	},
+	
+	"SET ": {
+		"verboseName": "SET IMAGE",
+        "desc": "Updates an Image over time. (Type 'null' in any parameter to retain previous value.)",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "IMG ID",
+                "dtype" : "int",
+				"defValue" : "0"
+            },
+			{
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "X",
+                "dtype" : "int",
+				"defValue" : "0"
+            },
+			{
+                "index" : "2",
+                "key" : "InputSmall",
+                "label" : "Y",
+                "dtype" : "int",
+				"defValue" : "0"
             },
 			{
                 "index" : "3",
-                "key" : "InputMedium",
-                "label" : "MIN VALUE",
-                "dtype" : "int"
+                "key" : "InputSmall",
+                "label" : "ROT",
+                "dtype" : "int",
+				"defValue" : "0"
             },
 			{
                 "index" : "4",
-                "key" : "InputMedium",
-                "label" : "MAX VALUE",
-                "dtype" : "int"
+                "key" : "InputSmall",
+                "label" : "SCALE",
+                "dtype" : "str",
+				"defValue" : "1;1"
             },
 			{
                 "index" : "5",
                 "key" : "InputSmall",
-                "label" : "SHOW EVEN IF EMPTY",
-                "dtype" : "bool"
+                "label" : "Z-INDEX",
+                "dtype" : "int",
+				"defValue" : "0"
+            },
+			{
+                "index" : "6",
+                "key" : "InputMedium",
+                "label" : "RGBA_MOD",
+                "dtype" : "str",
+				"defValue" : "1;1;1;1"
+            },
+			{
+                "index" : "7",
+                "key" : "InputMedium",
+                "label" : "FRAMES_EASE",
+                "dtype" : "str",
+				"defValue" : "30;1"
+            }
+        ]
+	},
+	
+	"CLEAR": {
+		"verboseName": "CLEAR IMAGE",
+        "desc": "Removes an Image.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "IMG ID",
+                "dtype" : "int",
+				"defValue" : "0"
+            }
+        ]
+	},
+	
+	"SND ": {
+		"verboseName": "SOUND OR MUSIC EFFECT",
+        "desc": "Plays a song or sound in a designated channel: Background Music (bgm), Background Sounds (bgs), or Sound Effects (snd).",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "CHANNEL",
+                "dtype" : "str",
+				"defValue" : "snd"
+            },
+			{
+                "index" : "1",
+                "key" : "InputLarge",
+                "label" : "SND NAME",
+                "dtype" : "str",
+				"defValue" : "boom"
+            }
+        ]
+	},
+	
+	"FADE": {
+		"verboseName": "FADE OUT CHANNEL",
+        "desc": "Slowly fades out a sound channel & resets it once it's reached 0.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "CHANNEL",
+                "dtype" : "str",
+				"defValue" : "snd"
+            }
+        ]
+	},
+	
+	"QUIET": {
+		"verboseName": "STOP SOUND CHANNEL",
+        "desc": "Stops a sound channel.",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputSmall",
+                "label" : "CHANNEL",
+                "dtype" : "str",
+				"defValue" : "snd"
+            }
+        ]
+	},
+	
+	"GOTO": {
+		"verboseName": "GO TO NEW SCENE",
+        "desc": "Calls the next scene",
+        "params": [
+            {
+                "index" : "0",
+                "key" : "InputMedium",
+                "label" : "SCENE TYPE",
+                "dtype" : "str",
+				"defValue" : "VN"
+            },
+            {
+                "index" : "1",
+                "key" : "InputSmall",
+                "label" : "SCENE ID",
+                "dtype" : "int",
+				"defValue" : "0"
+            }
+        ]
+	},
+	
+	"CLOSE": {
+		"verboseName": "CLOSE SCENE",
+        "desc": "Closes secondary scenes like pauses or dialogue boxes.",
+        "params": []
+	},
+	
+	"DEBUG": {
+        "verboseName": "DEBUG",
+        "desc": "Prints a message in the console.",
+        "params" : [
+			{
+                "index" : "0",
+                "key" : "InputXLarge",
+                "label" : "LOG MESSAGE",
+                "dtype" : "str",
+				"defValue" : "Hello world :3"
+            }
+        ]
+    },
+	
+	"DATA": {
+        "verboseName": "DATA",
+        "desc": "System Data, updates state on preload, not on script reading.",
+        "params" : [
+			{
+                "index" : "0",
+                "key" : "InputMedium",
+                "label" : "TYPE",
+                "dtype" : "str"
+            },
+			{
+                "index" : "1",
+                "key" : "InputLarge",
+                "label" : "PARAMS",
+                "dtype" : "str"
             }
         ]
     }
