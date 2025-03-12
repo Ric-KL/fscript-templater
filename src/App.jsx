@@ -93,19 +93,56 @@ function App() {
       const selectedPath = await open({
         multiple: false,
         title: "Select Save",
-        defaultPath: await resolveResource("saves/")
+        defaultPath: await resolveResource("config/saves/")
       });
 
       let strData = await readTextFile(selectedPath);
 
+      let indexParam = {
+        "key": "InputSmall",
+        "label": "BRANCH",
+        "dtype": "int",
+        "defValue": "0"
+      }
+
       let modulesRaw = strData.split("\r\n")
-      console.log(modulesRaw)
+
+      let modsData = []
+
+      modulesRaw.forEach(x => {
+        let modVals = x.split("\t")
+        
+        let typeCode = modVals[0]
+        typeCode = typeCode.replace(/" "/gi , "")
+        let typeCodeLength = typeCode.length
+        if (typeCodeLength < 4) {
+          let difference = 4 - typeCodeLength
+          typeCode = typeCode + " ".repeat(difference)
+          console.log(difference , typeCodeLength , typeCode)
+        }
+
+        modVals.shift()
+        
+        let modObj = { [[typeCode]]: [] }
+        
+        let modObjVals = []
+        modVals.forEach(y => {
+          modObjVals.push(y)
+        })
+        modObj[[typeCode]] = modObjVals
+        modsData.push(modObj)
+      })
+
+      modsData.forEach(x => {
+        console.log(x)
+        createModuleFromData(x)
+      })
 
       if (!selectedPath) { return }
       else { return }
 
     } catch (error) {
-      alert("Invalid Data File")
+      alert("No file selected.")
       console.log(error)
     }
   }
@@ -135,6 +172,53 @@ function App() {
         "key": x.key,
         "label": x.label,
         "value": x.defValue ? x.defValue : "",
+        "dType": x.dType
+      }
+
+      newInputs.push(newParam)
+    })
+
+    let newModule = { index: mainIndex, label: confKey, inputs: newInputs }
+
+    setModuleData((prevObj) => {
+      return (
+        {
+          "counter": updIndex,
+          "list": [
+            ...prevObj.list,
+            newModule
+          ]
+        }
+      )
+    })
+  }
+
+  function createModuleFromData(obj) {
+    let mainIndex = moduleData.counter
+    let updIndex = mainIndex + 1
+    let confKey = Object.keys(obj)[0]
+
+    let newInputs = []
+
+    let indexParam = {
+      "index": `${mainIndex}:0`,
+      "key": "InputSmall",
+      "label": "INDEX",
+      "value": obj[confKey][0],
+      "dType": "int"
+    }
+
+    newInputs.push(indexParam)
+
+    //${parseInt(x.index) + 1}
+
+    configObj[confKey].params.forEach(x => {
+      let parityIndex = configObj[confKey].params.indexOf(x)
+      let newParam = {
+        "index": `${mainIndex}:${newInputs.length}`,
+        "key": x.key,
+        "label": x.label,
+        "value": obj[confKey][parityIndex + 1],
         "dType": x.dType
       }
 

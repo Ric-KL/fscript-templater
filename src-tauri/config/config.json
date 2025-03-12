@@ -1,5 +1,5 @@
 {
-	"#": {
+	"#   ": {
 		"verboseName": "Comment",
         "desc": "Doesn't get read by program.",
         "params": [

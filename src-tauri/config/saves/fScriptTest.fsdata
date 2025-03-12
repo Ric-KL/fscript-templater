@@ -1,0 +1,11 @@
+#	0001	NPC Dialogue Test
+TEXT	0	"NPC:"	"I'm an Event."	"Cool!";"..."
+IF	0	1	"=="	0	0
+TEXT	1	"NPC:"	"Thanks!"	
+ENDIF	1	
+IF	0	1	"=="	0	1
+TEXT	1	"NPC:"	"..."	
+WAIT	1	30
+ENDIF	1	
+VAR	0	1	"="	0	0
+TEXT	0	"Ok, bye."	
